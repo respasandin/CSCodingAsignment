@@ -5,7 +5,7 @@ public class createTable {
     public static void createTable() throws SQLException {
         String sqlCreate = "CREATE TABLE IF NOT EXISTS DATA"
                 + "  (id           VARCHAR(25),"
-                + "   status            VARCHAR(25),"
+                + "   state            VARCHAR(25),"
                 + "   duration          VARCHAR(25),"
                 + "   type           VARCHAR(25),"
                 + "   host           VARCHAR(25),"
