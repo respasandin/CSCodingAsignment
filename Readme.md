@@ -2,7 +2,7 @@
 This repository contains all the information,requirements,how to build the system for `Coding Assignment - Software Dynamics Internship`
 
 ### Requirements
-The documentation for the requirements can be found [here]()
+The documentation for the requirements can be found [here](https://github.com/respasandin/CSCodingAsignment/tree/master/Requirements)
 
 ## Usage
 ```
