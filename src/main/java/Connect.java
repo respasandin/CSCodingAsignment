@@ -14,7 +14,7 @@ public class Connect {
         System.out.println("Connecting to database...");
 
         Main.conn = DriverManager.getConnection(
-                "jdbc:hsqldb:file:C:\\Users\\Fina\\IntelliJIDEAProjects\\CodingAssignment\\Data\\database/",
+                "jdbc:hsqldb:file:..\\Data\\database/",
                 connectionProps);
 
         System.out.println("Connected to database");
