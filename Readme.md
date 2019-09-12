@@ -7,7 +7,7 @@ The documentation for the requirements can be found [here](https://github.com/re
 ## Usage
 ```
 $ gradle build
-$ java -jar /build/libs/CodingAssignment-1.0-SNAPSHOT.jar "path/to/your/log_file.json"
+$ java -jar path/to/yourfolder/+/build/libs/CodingAssignment-1.0-SNAPSHOT.jar "path/to/your/log_file.json"
 ```
 Output:
 ```
