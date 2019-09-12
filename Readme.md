@@ -22,7 +22,7 @@ Exit
 ### Tests
 Test to get the file path
 ```
-$ gradle testgetPath -Dpath="path/to/your/log_file.json"
+$ gradle testPath -Dpath="path/to/your/log_file.json"
 ```
 Output:
 
