@@ -7,7 +7,7 @@ The documentation for the requirements can be found [here](https://github.com/re
 ## Usage
 ```
 $ gradle build
-$ java -jar /build/libs/CodingAssignment-1.0-SNAPSHOT.jar "path/to/your/log_file"
+$ java -jar /build/libs/CodingAssignment-1.0-SNAPSHOT.jar "path/to/your/log_file.json"
 ```
 Output:
 ```
@@ -22,17 +22,17 @@ Exit
 ### Tests
 Test to get the file path
 ```
-$ gradle testgetPath -Dpath="path/to/your/log_file"
+$ gradle testgetPath -Dpath="path/to/your/log_file.json"
 ```
 Output:
 
 ```bash
-Path/to/your/log_file -Dpath="path/to/your/log_file"
+Path/to/your/log_file -Dpath="path/to/your/log_file.json"
 ```
 
 Test to read the file
 ```
-$ gradle testreadjson
+$ gradle testreadjson -Dpath="path/to/your/log_file.json"
 ```
 Output json file for same ids within start timestamp,end timestamp,duration and alert :
 ```
