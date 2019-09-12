@@ -1,0 +1,97 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'java'
+}
+
+group 'com.test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDir("src/main")
+    test.java.srcDir("src/test")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
+}
+
+jar {
+    from configurations.compile.collect { zipTree(it) }
+    manifest.attributes("Main-Class": "Main")
+}
+
+task testPath {
+    doLast {
+        //Check if path to file is given in the command line, if not print error message
+        if (System.getProperty("path") != null) {
+            println System.getProperty("path")
+        } else {
+            System.err.println("Invalid command line, path to log file required")
+            System.exit(1)
+        }
+    }
+}
+
+task testreadjson{
+    doLast {
+        //Read file and parse JSON
+        def jsonFile = new File("..\\Data\\log_file")
+        def listjson = new File(jsonFile.readLines() as String)
+
+        def json = new JsonSlurper().parseText(listjson as String)
+        assert json as Map
+
+        int i = 0
+        int j
+        def start_timestamp
+        def end_timestamp
+        def duration
+        def alert
+        String[] data = []
+
+        //Loop to search same id and get the start and end timestamp
+        for (i; i < json.size(); i++) {
+            if (json[i].id && json[i].state == 'STARTED') {
+                start_timestamp = json[i].timestamp
+            } else if (json[i].id && json[i].state == 'FINISHED') {
+                end_timestamp = json[i].timestamp
+            }
+
+            for (j = (i + 1); j < json.size(); j++) {
+                if (json[i].id == json[j].id && json[j].state == 'STARTED') {
+                    start_timestamp = json[j].timestamp
+                    duration = end_timestamp - start_timestamp
+                    if(duration >= 8){
+                        alert = 'true'
+                    }else{
+                        alert = 'false'
+                    }
+                    println json[i].id + ' ' + json[j].id + ' ' + start_timestamp + ' ' + end_timestamp + ' ' + duration + ' ' + alert
+                } else if (json[i].id == json[j].id && json[j].state == 'FINISHED') {
+                    end_timestamp = json[j].timestamp
+                    duration = end_timestamp - start_timestamp
+                    if(duration >= 8){
+                        alert = 'true'
+                    }else{
+                        alert = 'false'
+                    }
+                    println json[i].id + ' ' + json[j].id + ' ' + start_timestamp + ' ' + end_timestamp + ' ' + duration + ' ' + alert
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
