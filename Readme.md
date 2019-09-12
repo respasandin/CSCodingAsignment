@@ -27,7 +27,7 @@ $ gradle testgetPath -Dpath="path/to/your/log_file.json"
 Output:
 
 ```bash
-Path/to/your/log_file -Dpath="path/to/your/log_file.json"
+Path/to/your/log_file 
 ```
 
 Test to read the file
